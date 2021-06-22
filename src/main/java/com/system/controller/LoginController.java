@@ -16,7 +16,7 @@ public class LoginController {
     public String  loginHandle(String username , String password, Model model){
         if(logService.login(username,password)) {
             model.addAttribute("username",username);
-            return "main.jsp";
+            return "students.jsp";
         }
         else
             return "redirect:loginPage";
