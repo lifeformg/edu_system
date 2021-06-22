@@ -1,7 +1,9 @@
 package test;
 
-import com.system.Service.LogService;
+import com.system.entity.Page;
+import com.system.service.LogService;
 import com.system.mapper.StudentMapper;
+import com.system.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,16 @@ public class TestMain {
     public void testLog(){
         boolean loginResult = logService.login("admin", "123");
         System.out.println(loginResult);
+    }
+
+    @Autowired
+    private StudentService studentService;
+
+    @Test
+    public void testStudent(){
+        int total = studentService.getPageTotal(2);
+        System.out.println(total);
+        System.out.println(studentService.selectByPage(new Page(2,total,2)));
     }
 
 }

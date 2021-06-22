@@ -21,6 +21,17 @@
     where userID = #{userid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
+    select student.*, college.collegeName
+    from student, college
+    WHERE student.collegeID = college.collegeID
+    limit #{pageIndex}, #{pageSize}
+  </select>
+  
+  <select id="getTotal" resultType="java.lang.Integer">
+    SELECT COUNT(userID) FROM student
+  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student

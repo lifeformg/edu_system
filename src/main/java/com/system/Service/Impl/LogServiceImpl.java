@@ -1,6 +1,6 @@
-package com.system.Service.Impl;
+package com.system.service.impl;
 
-import com.system.Service.LogService;
+import com.system.service.LogService;
 import com.system.entity.Userlogin;
 import com.system.mapper.UserloginMapper;
 import org.springframework.beans.factory.annotation.Autowired;

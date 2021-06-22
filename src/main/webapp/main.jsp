@@ -5,13 +5,16 @@
   Time: 8:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>教务系统</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/alte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/static/alte/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/alte/dist/css/adminlte.min.css">
 </head>
@@ -33,7 +36,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user1-128x128.jpg"
+                                 alt="User Avatar" class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -49,7 +53,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user8-128x128.jpg"
+                                 alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -65,7 +70,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="${pageContext.request.contextPath}/static/alte/dist/img/user3-128x128.jpg"
+                                 alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -93,7 +99,8 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
@@ -101,7 +108,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -110,7 +117,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -119,7 +126,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -128,7 +135,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -137,7 +144,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -146,7 +153,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -155,7 +162,7 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Widgets
-                                <span class="right badge badge-danger">New</span>
+                                <%--                                <span class="right badge badge-danger">New</span>--%>
                             </p>
                         </a>
                     </li>
@@ -174,7 +181,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-						<!-- 标题 -->
+                        <!-- 标题 -->
                         <h1>DataTables</h1>
                     </div>
                 </div>
@@ -192,7 +199,8 @@
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                        <input type="text" name="table_search" class="form-control float-right"
+                                               placeholder="Search">
 
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-default">
@@ -207,80 +215,81 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
-										<th></th>
+                                        <th>用户ID</th>
+                                        <th>用户名</th>
+                                        <th>性别</th>
+                                        <th>出生日期</th>
+                                        <th>入学日期</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-										<td class="text-right py-0 align-middle">
-										  <div class="btn-group btn-group-sm">
-										    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-										    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-										  </div>
-										</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-										<td class="text-right py-0 align-middle">
-										  <div class="btn-group btn-group-sm">
-										    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-										    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-										  </div>
-										</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-										<td class="text-right py-0 align-middle">
-										  <div class="btn-group btn-group-sm">
-										    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-										    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-										  </div>
-										</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 6
-                                        </td>
-                                        <td>Win 98+</td>
-                                        <td>6</td>
-                                        <td>A</td>
-										<td class="text-right py-0 align-middle">
-										  <div class="btn-group btn-group-sm">
-										    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-										    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-										  </div>
-										</td>
-                                    </tr>
 
-                                    </tfoot>
+                                    <c:forEach items="${students}" var="student">
+                                        <tr>
+                                            <td>${student.userid}</td>
+                                            <td>${student.username}</td>
+                                            <td>${student.sex}</td>
+                                            <td>${student.birthyear}</td>
+                                            <td>${student.grade}</td>
+                                            <td class="text-right py-0 align-middle">
+                                                <div class="btn-group btn-group-sm">
+                                                    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
+                            <div class="row">
+                                <div class="col-sm-12 col-md-7">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                        <ul class="pagination">
+
+                                            <li class="paginate_button page-item previous"
+                                                id="example1_previous">
+                                                <a href="${pageContext.request.contextPath}/admin/students?page=${page.pageNow-1}"
+                                                                          data-dt-idx="${page.pageNow+1}" tabindex="0"
+                                                                          class="page-link">Previous</a>
+
+                                            </li>
+                                            <c:forEach begin="1" end="${page.pageTotal}" var="index">
+
+                                                <c:if test="${index != page.pageNow}">
+                                                    <li class="paginate_button page-item">
+                                                        <a href="${pageContext.request.contextPath}/admin/students?page=${index}"
+                                                           aria-controls="example1"
+                                                           data-dt-idx="${index}" tabindex="0"
+                                                           class="page-link">${index}</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${index == page.pageNow}">
+                                                    <li class="paginate_button page-item active">
+                                                        <a href="${pageContext.request.contextPath}/admin/students?page=${index}"
+                                                           aria-controls="example1"
+                                                           data-dt-idx="${index}" tabindex="0"
+                                                           class="page-link">${index}</a>
+                                                    </li>
+                                                </c:if>
+
+                                            </c:forEach>
+
+
+                                            <li class="paginate_button page-item next" id="example1_next">
+                                                <a href="${pageContext.request.contextPath}/admin/students?page=${page.pageNow+1}"
+                                                         aria-controls="example1"
+                                                         data-dt-idx="${page.pageNow+1}"
+                                                         tabindex="0"
+                                                         class="page-link">Next</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>
@@ -337,11 +346,11 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
-            "paging": true,
+            "paging": false,
             "lengthChange": false,
             "searching": false,
             "ordering": true,
-            "info": true,
+            "info": false,
             "autoWidth": false,
             "responsive": true,
         });
