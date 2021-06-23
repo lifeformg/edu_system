@@ -15,4 +15,8 @@ public interface StudentService {
     boolean delete(Integer userid);
 
     boolean add(Student student);
+
+    Student selectById(Integer userid);
+
+    boolean update(Student student);
 }

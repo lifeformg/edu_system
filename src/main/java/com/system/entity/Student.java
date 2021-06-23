@@ -11,7 +11,11 @@ public class Student {
 
     private Date birthyear;
 
+    private String birthyearFormed;
+
     private Date grade;
+
+    private String gradeFormed;
 
     private Integer collegeid;
 
@@ -61,6 +65,22 @@ public class Student {
 
     public void setCollegeid(Integer collegeid) {
         this.collegeid = collegeid;
+    }
+
+    public String getBirthyearFormed() {
+        return birthyearFormed;
+    }
+
+    public void setBirthyearFormed(String birthyearFormed) {
+        this.birthyearFormed = birthyearFormed;
+    }
+
+    public String getGradeFormed() {
+        return gradeFormed;
+    }
+
+    public void setGradeFormed(String gradeFormed) {
+        this.gradeFormed = gradeFormed;
     }
 
     @Override

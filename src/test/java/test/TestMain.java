@@ -4,11 +4,14 @@ import com.system.entity.Page;
 import com.system.service.LogService;
 import com.system.mapper.StudentMapper;
 import com.system.service.StudentService;
+//import com.system.util.DateFormer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Date;
 
 //指定当前类是spring和junit整合的一个类
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,5 +49,14 @@ public class TestMain {
         System.out.println(total);
         System.out.println(studentService.selectByPage(new Page(2,total,2)));
     }
+
+    @Autowired
+    StudentMapper studentMapper;
+
+    @Test
+    public void testDate(){
+        System.out.println(studentMapper.selectByPrimaryKey(999));
+    }
+
 
 }

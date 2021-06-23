@@ -36,4 +36,14 @@ public class StudentServiceImpl implements StudentService {
     public boolean add(Student student) {
         return 1==studentMapper.insertSelective(student);
     }
+
+    @Override
+    public Student selectById(Integer userid) {
+        return studentMapper.selectByPrimaryKey(userid);
+    }
+
+    @Override
+    public boolean update(Student student) {
+        return 1==studentMapper.updateByPrimaryKeySelective(student);
+    }
 }

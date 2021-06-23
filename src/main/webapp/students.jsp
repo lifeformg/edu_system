@@ -122,8 +122,17 @@
                             <div class="card-header">
                                 <h3 class="card-title">学生信息</h3>
 
+
+
                                 <div class="card-tools">
+
                                     <div class="input-group input-group-sm" style="width: 150px;">
+
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-default btn-info"><a href="${pageContext.request.contextPath}/admin/studentAddPage">添加</a></button>
+                                        </div>
+
+
                                         <input type="text" name="table_search" class="form-control float-right"
                                                placeholder="Search">
 
@@ -134,6 +143,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -159,7 +169,7 @@
                                             <td>${student.grade}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
-                                                    <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                                    <a href="${pageContext.request.contextPath}/admin/studentUpdatePage?userid=${student.userid}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                                                     <a href="${pageContext.request.contextPath}/admin/delete?userid=${student.userid}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </td>

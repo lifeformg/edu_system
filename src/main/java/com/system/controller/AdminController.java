@@ -6,6 +6,7 @@ import com.system.entity.Student;
 import com.system.mapper.StudentMapper;
 import com.system.service.CollegeService;
 import com.system.service.StudentService;
+import com.system.util.DateFormer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +63,24 @@ public class AdminController {
     @RequestMapping(value = "/add")
     public String add(Student student){
         studentService.add(student);
+        return "redirect:students";
+    }
+
+    //修改页面
+    @RequestMapping(value = "/studentUpdatePage")
+    public String updatePage(Integer userid,Model model){
+        model.addAttribute("colleges",collegeService.selectAllCollege());
+        Student student = studentService.selectById(userid);
+        model.addAttribute("student", student);
+        student.setBirthyearFormed(DateFormer.getDateFormed(student.getBirthyear()));
+        student.setGradeFormed(DateFormer.getDateFormed(student.getGrade()));
+        return "/studentUpdatePage.jsp";
+    }
+
+    //修改学生
+    @RequestMapping(value = "/update")
+    public String update(Student student){
+        studentService.update(student);
         return "redirect:students";
     }
 }
