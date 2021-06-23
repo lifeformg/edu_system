@@ -14,6 +14,31 @@
   <sql id="Base_Column_List" >
     userID, userName, sex, birthYear, degree, title, grade, collegeID
   </sql>
+
+  <select id="getTotal" resultType="java.lang.Integer">
+    SELECT COUNT(userID) FROM teacher
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    limit #{pageIndex}, #{pageSize}
+  </select>
+
+  <select id="getSearchTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(userID) FROM teacher
+    WHERE userName LIKE '%' #{word} '%'
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    WHERE teacher.userName LIKE '%' #{word} '%'
+    limit #{page.pageIndex}, #{page.pageSize}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

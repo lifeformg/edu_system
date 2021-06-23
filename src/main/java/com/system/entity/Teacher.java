@@ -11,11 +11,15 @@ public class Teacher {
 
     private Date birthyear;
 
+    private String birthyearFormed;
+
     private String degree;
 
     private String title;
 
     private Date grade;
+
+    private String gradeFormed;
 
     private Integer collegeid;
 
@@ -81,5 +85,21 @@ public class Teacher {
 
     public void setCollegeid(Integer collegeid) {
         this.collegeid = collegeid;
+    }
+
+    public String getBirthyearFormed() {
+        return birthyearFormed;
+    }
+
+    public void setBirthyearFormed(String birthyearFormed) {
+        this.birthyearFormed = birthyearFormed;
+    }
+
+    public String getGradeFormed() {
+        return gradeFormed;
+    }
+
+    public void setGradeFormed(String gradeFormed) {
+        this.gradeFormed = gradeFormed;
     }
 }

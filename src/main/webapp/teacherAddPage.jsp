@@ -143,20 +143,20 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/update">
+                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/add">
 
                   <div class="card-body">
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-2 col-form-label">用户ID</label>
                       <div class="col-sm-10">
-                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="用户ID" name="userid" value="${student.userid}">
+                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="用户ID" name="userid">
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">学生姓名</label>
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">教师姓名</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="学生姓名" name="username" value="${student.username}">
+                        <input type="text" class="form-control" id="inputPassword3" placeholder="教师姓名" name="username">
                       </div>
                     </div>
 
@@ -165,12 +165,12 @@
                       <div class="col-sm-10">
                         <div id="radioPrimary3">
                           <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary1" name="sex" ${student.sex.equals("男")?"checked":""} value="男">
+                            <input type="radio" id="radioPrimary1" name="sex" checked="" value="男">
                             <label for="radioPrimary1">男
                             </label>
                           </div>
                           <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary2" name="sex" ${student.sex.equals("女")?"checked":""} value="女">
+                            <input type="radio" id="radioPrimary2" name="sex" value="女">
                             <label for="radioPrimary2">女
                             </label>
                           </div>
@@ -183,7 +183,7 @@
                       <label class="col-sm-2 col-form-label" for="reservationdate">出生日期</label>
                       <div class="col-sm-10 input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"
-                               name="birthyear" value="${student.birthyearFormed}">
+                               name="birthyear">
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -191,10 +191,24 @@
                     </div>
 
                     <div class="form-group row">
-                      <label for="reservationdate2" class="col-sm-2 col-form-label">入学时间</label>
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">学位</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="学位" name="degree">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">职位</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPassword5" placeholder="职位" name="title">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="reservationdate2" class="col-sm-2 col-form-label">入校时间</label>
                       <div class="col-sm-10 input-group date" id="reservationdate2" data-target-input="nearest">
                         <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate2"
-                               name="grade" value="${student.gradeFormed}">
+                               name="grade">
                         <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -207,7 +221,7 @@
                         <select class="form-control select2" id="s1" name="collegeid">
 <%--                          <option selected="selected">Alabama</option>--%>
                           <c:forEach items="${colleges}" var="college">
-                            <option value="${college.collegeid}" ${student.collegeid==college.collegeid?"selected":""}>${college.collegename}</option>
+                            <option value="${college.collegeid}">${college.collegename}</option>
                           </c:forEach>
                         </select>
                       </div>

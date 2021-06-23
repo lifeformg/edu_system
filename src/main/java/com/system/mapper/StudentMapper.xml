@@ -13,12 +13,8 @@
     userID, userName, sex, birthYear, grade, collegeID
   </sql>
 
-
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from student
-    where userID = #{userid,jdbcType=INTEGER}
+  <select id="getTotal" resultType="java.lang.Integer">
+    SELECT COUNT(userID) FROM student
   </select>
 
   <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
@@ -26,10 +22,6 @@
     from student, college
     WHERE student.collegeID = college.collegeID
     limit #{pageIndex}, #{pageSize}
-  </select>
-  
-  <select id="getTotal" resultType="java.lang.Integer">
-    SELECT COUNT(userID) FROM student
   </select>
 
   <select id="getSearchTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
@@ -42,6 +34,13 @@
     from student, college
     WHERE student.userName LIKE '%' #{word} '%' and student.collegeID = college.collegeID
     limit #{page.pageIndex}, #{page.pageSize}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where userID = #{userid,jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

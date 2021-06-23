@@ -16,18 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/admin/student")
 @Controller
-public class AdminController {
-
-    @Autowired
-    private StudentMapper studentMapper;
+public class AdminStudentController {
 
     @Autowired
     private StudentService studentService;
 
     @Autowired
     private CollegeService collegeService;
+
+    static String prefix="/admin/student";
 
     //返回学生信息
     @RequestMapping(value = "/students")
@@ -40,10 +39,11 @@ public class AdminController {
         if(page>total)
             page = total;
         Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink("/admin/students?");
+        topage.setJumpLink(prefix+"/students?");
         List<Student> students = studentService.selectByPage(topage);
         model.addAttribute("students",students);
         model.addAttribute("page",topage);
+        model.addAttribute("prefix",prefix);
         return "/students.jsp";
     }
 
@@ -58,6 +58,7 @@ public class AdminController {
     @RequestMapping(value = "/studentAddPage")
     public String addPage(Model model){
         model.addAttribute("colleges",collegeService.selectAllCollege());
+        model.addAttribute("prefix",prefix);
         return "/studentAddPage.jsp";
     }
 
@@ -76,6 +77,7 @@ public class AdminController {
         model.addAttribute("student", student);
         student.setBirthyearFormed(DateFormer.getDateFormed(student.getBirthyear()));
         student.setGradeFormed(DateFormer.getDateFormed(student.getGrade()));
+        model.addAttribute("prefix",prefix);
         return "/studentUpdatePage.jsp";
     }
 
@@ -99,10 +101,11 @@ public class AdminController {
         if(page>total)
             page = total;
         Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink("/admin/search?word="+word);
+        topage.setJumpLink(prefix+"/search?word="+word);
         List<Student> students = studentService.searchByPage(word,topage);
         model.addAttribute("students",students);
         model.addAttribute("page",topage);
+        model.addAttribute("prefix",prefix);
         return "/students.jsp";
     }
 }

@@ -11,8 +11,6 @@ public interface StudentMapper {
 
     Student selectByPrimaryKey(Integer userid);
 
-    List<Student> selectByPage(Page page);
-
     int insert(Student record);
 
     int insertSelective(Student record);
@@ -22,6 +20,8 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     Integer getTotal();
+
+    List<Student> selectByPage(Page page);
 
     Integer getSearchTotal(String word);
 
