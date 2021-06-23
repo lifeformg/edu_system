@@ -32,6 +32,17 @@
     SELECT COUNT(userID) FROM student
   </select>
 
+  <select id="getSearchTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(userID) FROM student
+    WHERE userName LIKE '%' #{word} '%'
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap">
+    select student.*, college.collegeName
+    from student, college
+    WHERE student.userName LIKE '%' #{word} '%' and student.collegeID = college.collegeID
+    limit #{page.pageIndex}, #{page.pageSize}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student

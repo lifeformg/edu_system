@@ -2,8 +2,10 @@ package com.system.service.impl;
 
 import com.system.entity.Page;
 import com.system.entity.Student;
+import com.system.entity.Userlogin;
 import com.system.mapper.StudentMapper;
 import com.system.service.StudentService;
+import com.system.service.UserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,22 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private UserloginService userloginService;
+
+
+    @Override
+    public Integer getSearchPageTotal(String word, Integer pageSize) {
+        Integer total = studentMapper.getSearchTotal(word);
+        return (int)Math.ceil((double)total/pageSize);
+    }
+
+    @Override
+    public List<Student> searchByPage(String word, Page page) {
+        page.calPageIndex();
+        return studentMapper.searchByPage(word,page);
+    }
 
     @Override
     public Integer getPageTotal(Integer pageSize){
@@ -34,6 +52,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean add(Student student) {
+        //这里应修改成一个事务
+        Userlogin userlogin = new Userlogin();
+        userlogin.setUsername(student.getUserid().toString());
+        userlogin.setPassword("123");
+        userlogin.setRole(2);
+        userloginService.add(userlogin);
         return 1==studentMapper.insertSelective(student);
     }
 

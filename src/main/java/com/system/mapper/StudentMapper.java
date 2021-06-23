@@ -2,6 +2,7 @@ package com.system.mapper;
 
 import com.system.entity.Page;
 import com.system.entity.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     Integer getTotal();
+
+    Integer getSearchTotal(String word);
+
+    List<Student> searchByPage(@Param("word")String word,@Param("page")Page page);
 }

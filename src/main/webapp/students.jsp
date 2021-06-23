@@ -125,7 +125,7 @@
 
 
                                 <div class="card-tools">
-
+                                    <form method="post" action="${pageContext.request.contextPath}/admin/search">
                                     <div class="input-group input-group-sm" style="width: 150px;">
 
                                         <div class="input-group-prepend">
@@ -133,15 +133,19 @@
                                         </div>
 
 
-                                        <input type="text" name="table_search" class="form-control float-right"
-                                               placeholder="Search">
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
+                                            <input type="text" name="word" class="form-control float-right"
+                                                   placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+
+
                                     </div>
+                                    </form>
                                 </div>
 
                             </div>
@@ -187,7 +191,7 @@
 
                                             <li class="paginate_button page-item previous"
                                                 id="example1_previous">
-                                                <a href="${pageContext.request.contextPath}/admin/students?page=${page.pageNow-1}"
+                                                <a href="${pageContext.request.contextPath}${page.jumpLink}&page=${page.pageNow-1}"
                                                                           data-dt-idx="${page.pageNow+1}" tabindex="0"
                                                                           class="page-link">Previous</a>
 
@@ -196,7 +200,7 @@
 
                                                 <c:if test="${index != page.pageNow}">
                                                     <li class="paginate_button page-item">
-                                                        <a href="${pageContext.request.contextPath}/admin/students?page=${index}"
+                                                        <a href="${pageContext.request.contextPath}${page.jumpLink}&page=${index}"
                                                            aria-controls="example1"
                                                            data-dt-idx="${index}" tabindex="0"
                                                            class="page-link">${index}</a>
@@ -204,7 +208,7 @@
                                                 </c:if>
                                                 <c:if test="${index == page.pageNow}">
                                                     <li class="paginate_button page-item active">
-                                                        <a href="${pageContext.request.contextPath}/admin/students?page=${index}"
+                                                        <a href="${pageContext.request.contextPath}${page.jumpLink}&page=${index}"
                                                            aria-controls="example1"
                                                            data-dt-idx="${index}" tabindex="0"
                                                            class="page-link">${index}</a>
@@ -215,7 +219,7 @@
 
 
                                             <li class="paginate_button page-item next" id="example1_next">
-                                                <a href="${pageContext.request.contextPath}/admin/students?page=${page.pageNow+1}"
+                                                <a href="${pageContext.request.contextPath}${page.jumpLink}&page=${page.pageNow+1}"
                                                          aria-controls="example1"
                                                          data-dt-idx="${page.pageNow+1}"
                                                          tabindex="0"

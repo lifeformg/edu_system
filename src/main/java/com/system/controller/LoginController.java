@@ -1,6 +1,6 @@
 package com.system.controller;
 
-import com.system.service.LogService;
+import com.system.service.UserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @Autowired
-    private LogService logService;
+    private UserloginService userLoginService;
 
     @RequestMapping(value = "login")
     public String  loginHandle(String username , String password, Model model){
-        if(logService.login(username,password)) {
+        if(userLoginService.login(username,password)) {
             model.addAttribute("username",username);
             return "students.jsp";
         }

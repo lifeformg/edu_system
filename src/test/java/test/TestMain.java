@@ -1,7 +1,7 @@
 package test;
 
 import com.system.entity.Page;
-import com.system.service.LogService;
+import com.system.service.UserloginService;
 import com.system.mapper.StudentMapper;
 import com.system.service.StudentService;
 //import com.system.util.DateFormer;
@@ -10,8 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Date;
 
 //指定当前类是spring和junit整合的一个类
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,11 +30,11 @@ public class TestMain {
 //    }
 
     @Autowired
-    private LogService logService;
+    private UserloginService userLoginService;
 
     @Test
     public void testLog(){
-        boolean loginResult = logService.login("admin", "123");
+        boolean loginResult = userLoginService.login("admin", "123");
         System.out.println(loginResult);
     }
 
@@ -58,5 +56,16 @@ public class TestMain {
         System.out.println(studentMapper.selectByPrimaryKey(999));
     }
 
+    @Test
+    public void testsearch(){
+        System.out.println(studentMapper.getSearchTotal("小"));
+    }
+
+    @Test
+    public void testsearch2(){
+        Page page = new Page(2,3,10);
+        page.calPageIndex();
+        System.out.println(studentMapper.searchByPage("小",page));
+    }
 
 }

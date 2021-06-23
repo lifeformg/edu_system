@@ -1,6 +1,7 @@
 package com.system.controller;
 
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.system.entity.Page;
 import com.system.entity.Student;
 import com.system.mapper.StudentMapper;
@@ -35,10 +36,11 @@ public class AdminController {
             page = 1;
         }
 
-        Integer total = studentService.getPageTotal(3);
+        Integer total = studentService.getPageTotal(Page.defaultPageSize);
         if(page>total)
             page = total;
-        Page topage = new Page(page, total,3);
+        Page topage = new Page(page, total,Page.defaultPageSize);
+        topage.setJumpLink("/admin/students?");
         List<Student> students = studentService.selectByPage(topage);
         model.addAttribute("students",students);
         model.addAttribute("page",topage);
@@ -82,5 +84,25 @@ public class AdminController {
     public String update(Student student){
         studentService.update(student);
         return "redirect:students";
+    }
+
+    //模糊搜索
+    @RequestMapping(value = "/search")
+    public String search(Model model, Integer page,String word){
+        if(page == null || page<=0){
+            page = 1;
+        }
+        if(word == null)
+            word = "";
+
+        Integer total = studentService.getSearchPageTotal(word,Page.defaultPageSize);
+        if(page>total)
+            page = total;
+        Page topage = new Page(page, total,Page.defaultPageSize);
+        topage.setJumpLink("/admin/search?word="+word);
+        List<Student> students = studentService.searchByPage(word,topage);
+        model.addAttribute("students",students);
+        model.addAttribute("page",topage);
+        return "/students.jsp";
     }
 }

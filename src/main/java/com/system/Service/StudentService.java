@@ -19,4 +19,8 @@ public interface StudentService {
     Student selectById(Integer userid);
 
     boolean update(Student student);
+
+    Integer getSearchPageTotal(String word,Integer pageSize);
+
+    List<Student> searchByPage(String word,Page topage);
 }

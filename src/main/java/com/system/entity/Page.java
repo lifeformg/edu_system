@@ -9,6 +9,10 @@ public class Page {
 
     private Integer pageIndex;
 
+    private String jumpLink;
+
+    public static Integer defaultPageSize=3;
+
     public Page(Integer pageNow,Integer pageTotal,Integer pageSize) {
         this.pageNow = pageNow;
         this.pageTotal = pageTotal;
@@ -18,7 +22,7 @@ public class Page {
     public Page(Integer pageNow,Integer pageTotal) {
         this.pageNow = pageNow;
         this.pageTotal = pageTotal;
-        this.pageSize = 10;
+        this.pageSize = Page.defaultPageSize;
     }
 
     public Integer getPageNow() {
@@ -51,5 +55,13 @@ public class Page {
 
     public void calPageIndex() {
         pageIndex = pageSize * (pageNow-1);
+    }
+
+    public String getJumpLink() {
+        return jumpLink;
+    }
+
+    public void setJumpLink(String jumpLink) {
+        this.jumpLink = jumpLink;
     }
 }
