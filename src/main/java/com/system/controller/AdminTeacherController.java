@@ -1,18 +1,21 @@
 package com.system.controller;
 
+import com.system.entity.College;
 import com.system.entity.Page;
 import com.system.entity.Teacher;
-import com.system.mapper.TeacherMapper;
 import com.system.service.CollegeService;
 import com.system.service.TeacherService;
 import com.system.util.DateFormer;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "/admin/teacher")
 @Controller
@@ -29,19 +32,9 @@ public class AdminTeacherController {
     //返回学生信息
     @RequestMapping(value = "/teachers")
     public String teachers(Model model, Integer page){
-        if(page == null || page<=0){
-            page = 1;
-        }
-
-        Integer total = teacherService.getPageTotal(Page.defaultPageSize);
-        if(page>total)
-            page = total;
-        Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink(prefix+"/teachers?");
+        Page topage = Page.pageElement(page,teacherService.getPageTotal(Page.defaultPageSize),prefix+"/teachers?");
         List<Teacher> teachers = teacherService.selectByPage(topage);
-        model.addAttribute("teachers",teachers);
-        model.addAttribute("page",topage);
-        model.addAttribute("prefix",prefix);
+        setModel(model, topage, teachers);
         return "/teachers.jsp";
     }
 
@@ -89,21 +82,23 @@ public class AdminTeacherController {
     //模糊搜索
     @RequestMapping(value = "/search")
     public String search(Model model, Integer page,String word){
-        if(page == null || page<=0){
-            page = 1;
-        }
-        if(word == null)
-            word = "";
-
-        Integer total = teacherService.getSearchPageTotal(word,Page.defaultPageSize);
-        if(page>total)
-            page = total;
-        Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink(prefix+"/search?word="+word);
+        Page topage = Page.pageElement(page,teacherService.getSearchPageTotal(word,Page.defaultPageSize),prefix+"/search?word="+word);
         List<Teacher> teachers = teacherService.searchByPage(word,topage);
-        model.addAttribute("teachers",teachers);
+        setModel(model, topage, teachers);
+        return "/teachers.jsp";
+    }
+
+    private void setModel(Model model, Page topage, List<Teacher> students) {
+        model.addAttribute("teachers",students);
         model.addAttribute("page",topage);
         model.addAttribute("prefix",prefix);
-        return "/teachers.jsp";
+
+        List<College> collegeList = collegeService.selectAllCollege();
+        Map<Integer, College> colleges = new HashMap<>();
+        for (College college:collegeList
+        ) {
+            colleges.put(college.getCollegeid(),college);
+        }
+        model.addAttribute("colleges",colleges);
     }
 }

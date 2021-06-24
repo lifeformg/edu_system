@@ -25,6 +25,22 @@ public class Page {
         this.pageSize = Page.defaultPageSize;
     }
 
+    public static Page pageElement(Integer page, Integer pageTotal, Integer pageSize, String jumpLink) {
+        if(page == null || page<=0){
+            page = 1;
+        }
+
+        if(page> pageTotal)
+            page = pageTotal;
+        Page topage = new Page(page, pageTotal,pageSize);
+        topage.setJumpLink(jumpLink);
+        return topage;
+    }
+
+    public static Page pageElement(Integer page, Integer pageTotal, String jumpLink) {
+        return pageElement(page,pageTotal,defaultPageSize,jumpLink);
+    }
+
     public Integer getPageNow() {
         return pageNow;
     }

@@ -6,6 +6,11 @@
     <result column="studentID" property="studentid" jdbcType="INTEGER" />
     <result column="mark" property="mark" jdbcType="INTEGER" />
   </resultMap>
+
+  <select id="selectStudentByCourseId" parameterType="java.lang.Integer">
+    select
+  </select>
+
   <insert id="insert" parameterType="com.system.entity.Selectedcourse" >
     insert into selectedcourse (courseID, studentID, mark
       )

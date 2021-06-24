@@ -1,10 +1,8 @@
 package com.system.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.system.entity.College;
 import com.system.entity.Page;
 import com.system.entity.Student;
-import com.system.mapper.StudentMapper;
 import com.system.service.CollegeService;
 import com.system.service.StudentService;
 import com.system.util.DateFormer;
@@ -14,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "/admin/student")
 @Controller
@@ -31,19 +31,14 @@ public class AdminStudentController {
     //返回学生信息
     @RequestMapping(value = "/students")
     public String students(Model model, Integer page){
-        if(page == null || page<=0){
-            page = 1;
-        }
 
-        Integer total = studentService.getPageTotal(Page.defaultPageSize);
-        if(page>total)
-            page = total;
-        Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink(prefix+"/students?");
+        //设置分页器
+        Page topage = Page.pageElement(page, studentService.getPageTotal(Page.defaultPageSize),prefix+"/students?");
+
+        //设置学生列表
         List<Student> students = studentService.selectByPage(topage);
-        model.addAttribute("students",students);
-        model.addAttribute("page",topage);
-        model.addAttribute("prefix",prefix);
+        setModel(model, topage, students);
+
         return "/students.jsp";
     }
 
@@ -91,21 +86,25 @@ public class AdminStudentController {
     //模糊搜索
     @RequestMapping(value = "/search")
     public String search(Model model, Integer page,String word){
-        if(page == null || page<=0){
-            page = 1;
-        }
-        if(word == null)
-            word = "";
 
-        Integer total = studentService.getSearchPageTotal(word,Page.defaultPageSize);
-        if(page>total)
-            page = total;
-        Page topage = new Page(page, total,Page.defaultPageSize);
-        topage.setJumpLink(prefix+"/search?word="+word);
+        Page topage = Page.pageElement(page,studentService.getSearchPageTotal(word,Page.defaultPageSize),prefix+"/search?word="+word);
+
         List<Student> students = studentService.searchByPage(word,topage);
+        setModel(model, topage, students);
+        return "/students.jsp";
+    }
+
+    private void setModel(Model model, Page topage, List<Student> students) {
         model.addAttribute("students",students);
         model.addAttribute("page",topage);
         model.addAttribute("prefix",prefix);
-        return "/students.jsp";
+
+        List<College> collegeList = collegeService.selectAllCollege();
+        Map<Integer, College> colleges = new HashMap<>();
+        for (College college:collegeList
+        ) {
+            colleges.put(college.getCollegeid(),college);
+        }
+        model.addAttribute("colleges",colleges);
     }
 }

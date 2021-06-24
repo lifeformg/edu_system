@@ -21,4 +21,6 @@ public interface TeacherService {
     Integer getSearchPageTotal(String word, Integer pageSize);
 
     List<Teacher> searchByPage(String word, Page topage);
+
+    List<Teacher> selectAllTeacher();
 }

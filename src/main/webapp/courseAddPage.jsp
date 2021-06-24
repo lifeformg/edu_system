@@ -44,9 +44,9 @@
 
 
   <!-- Main Sidebar Container -->
-  <jsp:include page="adminSidebar.jsp" flush="true">
-    <jsp:param name="activate" value="teacher"/>
-  </jsp:include>
+    <jsp:include page="adminSidebar.jsp" flush="true">
+        <jsp:param name="activate" value="course"/>
+    </jsp:include>
 
   <div class="content-wrapper">
 
@@ -65,97 +65,99 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/update">
+                  <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/add">
 
-                  <div class="card-body">
-                    <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">用户ID</label>
-                      <div class="col-sm-10">
-                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="用户ID" name="userid" value="${teacher.userid}" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">教师姓名</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="教师姓名" name="username" value="${teacher.username}">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="radioPrimary3" class="col-sm-2 col-form-label">性别</label>
-                      <div class="col-sm-10">
-                        <div id="radioPrimary3">
-                          <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary1" name="sex" ${teacher.sex.equals("男")?"checked":""} value="男">
-                            <label for="radioPrimary1">男
-                            </label>
+                      <div class="card-body">
+                          <div class="form-group row">
+                              <label for="inputEmail3" class="col-sm-2 col-form-label">课程ID</label>
+                              <div class="col-sm-10">
+                                  <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="课程ID" name="courseid" value="${course.courseid}">
+                              </div>
                           </div>
-                          <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary2" name="sex" ${teacher.sex.equals("女")?"checked":""} value="女">
-                            <label for="radioPrimary2">女
-                            </label>
+
+                          <div class="form-group row">
+                              <label for="inputPassword3" class="col-sm-2 col-form-label">课程名称</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputPassword3" placeholder="课程名称" name="coursename" value="${course.coursename}">
+                              </div>
                           </div>
-                        </div>
+
+                          <div class="form-group row">
+                              <label for="s2" class="col-sm-2 col-form-label">教师ID</label>
+                              <div class="col-sm-10">
+                                  <select class="form-control select2" id="s2" name="teacherid">
+                                      <c:forEach items="${teachers}" var="teacher">
+                                          <option value="${teacher.userid}" ${course.teacherid==teacher.userid?"selected":""}>${teacher.userid}</option>
+                                      </c:forEach>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="s3" class="col-sm-2 col-form-label">上课时间</label>
+                              <div class="col-sm-10">
+                                  <select class="form-control select2" id="s3" name="coursetime">
+                                      <option value="周一" ${"周一".equals(course.coursetime)?"selected":""}>周一</option>
+                                      <option value="周二" ${"周一".equals(course.coursetime)?"selected":""}>周二</option>
+                                      <option value="周三" ${"周一".equals(course.coursetime)?"selected":""}>周三</option>
+                                      <option value="周四" ${"周一".equals(course.coursetime)?"selected":""}>周四</option>
+                                      <option value="周五" ${"周一".equals(course.coursetime)?"selected":""}>周五</option>
+                                      <option value="周六" ${"周一".equals(course.coursetime)?"selected":""}>周六</option>
+                                      <option value="周日" ${"周一".equals(course.coursetime)?"selected":""}>周日</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="inputPassword3" class="col-sm-2 col-form-label">上课教室</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputPassword5" placeholder="上课教室" name="classroom" value="${course.classroom}">
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="inputPassword3" class="col-sm-2 col-form-label">周数</label>
+                              <div class="col-sm-10">
+                                  <input type="number" min="0" class="form-control" id="inputPassword6" placeholder="周数" name="courseweek" value="${course.courseweek}">
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="inputPassword3" class="col-sm-2 col-form-label">课程类型</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputPassword7" placeholder="课程类型" name="coursetype" value="${course.coursetype}">
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="s1" class="col-sm-2 col-form-label">院系</label>
+                              <div class="col-sm-10">
+                                  <select class="form-control select2" id="s1" name="collegeid">
+                                      <%--                          <option selected="selected">Alabama</option>--%>
+                                      <c:forEach items="${colleges}" var="college">
+                                          <option value="${college.collegeid}" ${course.collegeid==college.collegeid?"selected":""}>${college.collegename}</option>
+                                      </c:forEach>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="inputEmail3" class="col-sm-2 col-form-label">学分</label>
+                              <div class="col-sm-10">
+                                  <input type="number" min="0" class="form-control" placeholder="学分" name="score" value="${course.score}">
+                              </div>
+                          </div>
+
+
+
+                          <!-- /.card-body -->
+                          <div class="card-footer">
+                              <button type="submit" class="btn btn-info">Sign in</button>
+                          </div>
 
                       </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label class="col-sm-2 col-form-label" for="reservationdate">出生日期</label>
-                      <div class="col-sm-10 input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"
-                               name="birthyear" value="${teacher.birthyearFormed}">
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">学位</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="学位" name="degree" value="${teacher.degree}">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">职位</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword5" placeholder="职位" name="title" value="${teacher.title}">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="reservationdate2" class="col-sm-2 col-form-label">入校时间</label>
-                      <div class="col-sm-10 input-group date" id="reservationdate2" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate2"
-                               name="grade" value="${teacher.gradeFormed}">
-                        <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="s1" class="col-sm-2 col-form-label">院系</label>
-                      <div class="col-sm-10">
-                        <select class="form-control select2" id="s1" name="collegeid">
-<%--                          <option selected="selected">Alabama</option>--%>
-                          <c:forEach items="${colleges}" var="college">
-                            <option value="${college.collegeid}" ${teacher.collegeid==college.collegeid?"selected":""}>${college.collegename}</option>
-                          </c:forEach>
-                        </select>
-                      </div>
-                    </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-info">Sign in</button>
-                  </div>
-
-                  </div>
-                  <!-- /.card-footer -->
-                </form>
+                      <!-- /.card-footer -->
+                  </form>
 
               </div>
               <!-- /.card -->

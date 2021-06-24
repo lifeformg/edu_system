@@ -47,16 +47,20 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public boolean delete(Integer userid) {
-        return 1==teacherMapper.deleteByPrimaryKey(userid);
+        //这里应该修改一个事务
+        Userlogin userlogin = userloginService.selectByUsername(userid.toString());
+        return 1==teacherMapper.deleteByPrimaryKey(userid) && userloginService.delete(userlogin.getUserid());
     }
 
     @Override
     public boolean add(Teacher teacher) {
+        if(teacherMapper.selectByPrimaryKey(teacher.getUserid())!=null)
+            return false;
         //这里应修改成一个事务
         Userlogin userlogin = new Userlogin();
         userlogin.setUsername(teacher.getUserid().toString());
         userlogin.setPassword("123");
-        userlogin.setRole(2);
+        userlogin.setRole(1);
         userloginService.add(userlogin);
         return 1==teacherMapper.insertSelective(teacher);
     }
@@ -69,5 +73,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public boolean update(Teacher teacher) {
         return 1==teacherMapper.updateByPrimaryKeySelective(teacher);
+    }
+
+    @Override
+    public List<Teacher> selectAllTeacher() {
+        return teacherMapper.selectAllTeacher();
     }
 }

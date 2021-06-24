@@ -10,6 +10,32 @@
   <sql id="Base_Column_List" >
     userID, userName, password, role
   </sql>
+
+  <select id="getTotal" resultType="java.lang.Integer">
+    SELECT COUNT(userID) FROM userlogin WHERE role != 2
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
+    select
+    userID,userName
+    from userlogin
+    WHERE role != 2
+    limit #{pageIndex}, #{pageSize}
+  </select>
+
+  <select id="getSearchTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(userID) FROM userlogin
+    WHERE userName LIKE '%' #{word} '%' and role != 2
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap">
+    select
+    userID,userName
+    from userlogin
+    WHERE role != 2 and userName LIKE '%' #{word} '%'
+    limit #{page.pageIndex}, #{page.pageSize}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -23,6 +49,13 @@
     <include refid="Base_Column_List" />
     from userlogin
     where userName = #{username} and password = #{password}
+  </select>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from userlogin
+    where userName = #{username}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

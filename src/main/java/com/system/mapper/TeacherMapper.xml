@@ -39,6 +39,12 @@
     limit #{page.pageIndex}, #{page.pageSize}
   </select>
 
+  <select id="selectAllTeacher" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

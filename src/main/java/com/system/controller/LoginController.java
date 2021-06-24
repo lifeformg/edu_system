@@ -26,4 +26,9 @@ public class LoginController {
     public String loginPage(){
         return "loginPage.jsp";
     }
+
+    @RequestMapping(value = "logout")
+    public String logout(){
+        return "redirect:login";
+    }
 }

@@ -1,6 +1,10 @@
 package com.system.mapper;
 
 import com.system.entity.Course;
+import com.system.entity.Page;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CourseMapper {
     int deleteByPrimaryKey(Integer courseid);
@@ -14,4 +18,14 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
+    Integer getTotal();
+
+    List<Course> selectByPage(Page page);
+
+    Integer getSearchTotal(String word);
+
+    List<Course> searchByPage(@Param("word")String word, @Param("page")Page page);
+
+    List<Course> selectByTeacherId(Integer teacherid);
 }

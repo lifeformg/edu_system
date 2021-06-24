@@ -47,11 +47,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean delete(Integer userid) {
-        return 1==studentMapper.deleteByPrimaryKey(userid);
+        Userlogin userlogin = userloginService.selectByUsername(userid.toString());
+        return 1==studentMapper.deleteByPrimaryKey(userid) && userloginService.delete(userlogin.getUserid());
     }
 
     @Override
     public boolean add(Student student) {
+        if(studentMapper.selectByPrimaryKey(student.getUserid())!=null)
+            return false;
         //这里应修改成一个事务
         Userlogin userlogin = new Userlogin();
         userlogin.setUsername(student.getUserid().toString());

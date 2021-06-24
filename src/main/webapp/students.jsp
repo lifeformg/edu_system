@@ -29,87 +29,9 @@
 
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Widgets
-                                <%--                                <span class="right badge badge-danger">New</span>--%>
-                            </p>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-    </aside>
+    <jsp:include page="adminSidebar.jsp" flush="true">
+        <jsp:param name="activate" value="student"/>
+    </jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -160,6 +82,7 @@
                                         <th>性别</th>
                                         <th>出生日期</th>
                                         <th>入学日期</th>
+                                        <th>院系</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -172,6 +95,7 @@
                                             <td>${student.sex}</td>
                                             <td>${student.birthyear}</td>
                                             <td>${student.grade}</td>
+                                            <td>${colleges.get(student.collegeid).collegename}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
                                                     <a href="${pageContext.request.contextPath}${prefix}/studentUpdatePage?userid=${student.userid}" class="btn btn-info"><i class="fas fa-edit"></i></a>

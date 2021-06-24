@@ -16,6 +16,38 @@
     courseID, courseName, teacherID, courseTime, classRoom, courseWeek, courseType, collegeID, 
     score
   </sql>
+
+  <select id="getTotal" resultType="java.lang.Integer">
+    SELECT COUNT(courseID) FROM course
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
+    select
+    <include refid="Base_Column_List" />
+    from course
+    limit #{pageIndex}, #{pageSize}
+  </select>
+
+  <select id="getSearchTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(courseID) FROM course
+    WHERE courseName LIKE '%' #{word} '%'
+  </select>
+
+  <select id="searchByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    WHERE course.courseName LIKE '%' #{word} '%'
+    limit #{page.pageIndex}, #{page.pageSize}
+  </select>
+
+  <select id="selectByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where teacherID = #{teacherid,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -20,6 +20,8 @@ public interface TeacherMapper {
 
     int updateByPrimaryKey(Teacher record);
 
+    List<Teacher> selectAllTeacher();
+
     Integer getTotal();
 
     List<Teacher> selectByPage(Page page);

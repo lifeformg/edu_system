@@ -1,6 +1,9 @@
 package test;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.system.entity.Page;
+import com.system.mapper.UserloginMapper;
+import com.system.service.CourseService;
 import com.system.service.UserloginService;
 import com.system.mapper.StudentMapper;
 import com.system.service.StudentService;
@@ -10,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 //指定当前类是spring和junit整合的一个类
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -67,5 +71,25 @@ public class TestMain {
         page.calPageIndex();
         System.out.println(studentMapper.searchByPage("小",page));
     }
+
+    @Autowired
+    private UserloginService userloginService;
+
+    @Autowired
+    private UserloginMapper userloginMapper;
+
+    @Test
+    public void testreset(){
+        System.out.println(userLoginService.reset(14));
+    }
+
+    @Autowired
+    private CourseService courseService;
+
+    @Test
+    public void selectbyteacherid(){
+        System.out.println(courseService.selectByTeacherId(1001));
+    }
+
 
 }

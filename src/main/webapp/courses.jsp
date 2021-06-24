@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+
     <title>教务系统</title>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +30,7 @@
 
     <!-- Main Sidebar Container -->
     <jsp:include page="adminSidebar.jsp" flush="true">
-        <jsp:param name="activate" value="teacher"/>
+        <jsp:param name="activate" value="course"/>
     </jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
@@ -51,7 +52,7 @@
                                     <div class="input-group input-group-sm" style="width: 150px;">
 
                                         <div class="input-group-prepend">
-                                            <button type="button" class="btn btn-default btn-info"><a href="${pageContext.request.contextPath}${prefix}/teacherAddPage">添加</a></button>
+                                            <button type="button" class="btn btn-default btn-info"><a href="${pageContext.request.contextPath}${prefix}/courseAddPage">添加</a></button>
                                         </div>
 
 
@@ -76,33 +77,35 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>用户ID</th>
-                                        <th>用户名</th>
-                                        <th>性别</th>
-                                        <th>出生日期</th>
-                                        <th>学位</th>
-                                        <th>职位</th>
-                                        <th>入校日期</th>
+                                        <th>课程ID</th>
+                                        <th>课程名</th>
+                                        <th>授课教师编号</th>
+                                        <th>上课时间</th>
+                                        <th>上课教室</th>
+                                        <th>周数</th>
+                                        <th>课程类型</th>
                                         <th>院系</th>
+                                        <th>学分</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <c:forEach items="${teachers}" var="teacher">
+                                    <c:forEach items="${courses}" var="course">
                                         <tr>
-                                            <td>${teacher.userid}</td>
-                                            <td>${teacher.username}</td>
-                                            <td>${teacher.sex}</td>
-                                            <td>${teacher.birthyear}</td>
-                                            <td>${teacher.degree}</td>
-                                            <td>${teacher.title}</td>
-                                            <td>${teacher.grade}</td>
-                                            <td>${colleges.get(teacher.collegeid).collegename}</td>
+                                            <td>${course.courseid}</td>
+                                            <td>${course.coursename}</td>
+                                            <td>${course.teacherid}</td>
+                                            <td>${course.coursetime}</td>
+                                            <td>${course.classroom}</td>
+                                            <td>${course.courseweek}</td>
+                                            <td>${course.coursetype}</td>
+                                            <td>${colleges.get(course.collegeid).collegename}</td>
+                                            <td>${course.score}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
-                                                    <a href="${pageContext.request.contextPath}${prefix}/teacherUpdatePage?userid=${teacher.userid}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                                    <a href="${pageContext.request.contextPath}${prefix}/delete?userid=${teacher.userid}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                    <a href="${pageContext.request.contextPath}${prefix}/courseUpdatePage?courseid=${course.courseid}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                    <a href="${pageContext.request.contextPath}${prefix}/delete?courseid=${course.courseid}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
