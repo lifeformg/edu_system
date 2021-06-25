@@ -65,7 +65,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/changePassword">
+                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/changePassword">
 
                   <div class="card-body">
                     <div class="form-group row">

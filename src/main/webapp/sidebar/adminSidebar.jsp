@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="nav-item ${param.get("activate").equals("changePassword")?"menu-open":""}">
-                    <a href="${pageContext.request.contextPath}/admin/userlogin/changePasswordPage" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/changePasswordPage" class="nav-link">
                         <i class="nav-icon fas fa-1x"></i>
                         <p>
                             修改密码

@@ -45,7 +45,7 @@
 
   <!-- Main Sidebar Container -->
   <jsp:include page="adminSidebar.jsp" flush="true">
-    <jsp:param name="activate" value="student"/>
+    <jsp:param name="activate" value="teacher"/>
   </jsp:include>
 
   <div class="content-wrapper">
@@ -65,75 +65,38 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/update">
-
+                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}${prefix}/mark">
                   <div class="card-body">
-                    <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">用户ID</label>
+                    <div class="form-group row" hidden>
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">courseid</label>
                       <div class="col-sm-10">
-                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="用户ID" name="userid" value="${student.userid}" disabled>
+                        <input type="number" min="0" class="form-control" placeholder="" name="courseid" value="${courseid}">
                       </div>
                     </div>
-
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-2 col-form-label">学生姓名</label>
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">学生ID</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="学生姓名" name="username" value="${student.username}">
+                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="学生ID" name="studentid" readonly unselectable="on" value="${student.userid}">
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label for="radioPrimary3" class="col-sm-2 col-form-label">性别</label>
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">姓名</label>
                       <div class="col-sm-10">
-                        <div id="radioPrimary3">
-                          <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary1" name="sex" ${student.sex.equals("男")?"checked":""} value="男">
-                            <label for="radioPrimary1">男
-                            </label>
-                          </div>
-                          <div class="icheck-primary d-inline">
-                            <input type="radio" id="radioPrimary2" name="sex" ${student.sex.equals("女")?"checked":""} value="女">
-                            <label for="radioPrimary2">女
-                            </label>
-                          </div>
-                        </div>
-
+                        <input type="text" class="form-control" id="inputPassword3" placeholder="姓名" name="studentname" readonly unselectable="on" value="${student.username}">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-sm-2 col-form-label" for="reservationdate">出生日期</label>
-                      <div class="col-sm-10 input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"
-                               name="birthyear" value="${student.birthyearFormed}">
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                    </div>
+
 
                     <div class="form-group row">
-                      <label for="reservationdate2" class="col-sm-2 col-form-label">入学时间</label>
-                      <div class="col-sm-10 input-group date" id="reservationdate2" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate2"
-                               name="grade" value="${student.gradeFormed}">
-                        <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="s1" class="col-sm-2 col-form-label">院系</label>
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">成绩</label>
                       <div class="col-sm-10">
-                        <select class="form-control select2" id="s1" name="collegeid">
-<%--                          <option selected="selected">Alabama</option>--%>
-                          <c:forEach items="${colleges}" var="college">
-                            <option value="${college.collegeid}" ${student.collegeid==college.collegeid?"selected":""}>${college.collegename}</option>
-                          </c:forEach>
-                        </select>
+                        <input type="number" min="0" class="form-control" id="inputPassword5" placeholder="输入学生成绩" name="mark">
                       </div>
                     </div>
+
+
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Sign in</button>
