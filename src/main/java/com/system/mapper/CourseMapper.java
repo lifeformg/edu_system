@@ -2,6 +2,7 @@ package com.system.mapper;
 
 import com.system.entity.Course;
 import com.system.entity.Page;
+import com.system.entity.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

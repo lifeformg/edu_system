@@ -2,8 +2,10 @@ package test;
 
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.system.entity.Page;
+import com.system.entity.Selectedcourse;
 import com.system.mapper.UserloginMapper;
 import com.system.service.CourseService;
+import com.system.service.SelectedcourseService;
 import com.system.service.UserloginService;
 import com.system.mapper.StudentMapper;
 import com.system.service.StudentService;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -91,5 +94,21 @@ public class TestMain {
         System.out.println(courseService.selectByTeacherId(1001));
     }
 
+    @Autowired
+    private SelectedcourseService selectedcourseService;
+
+    @Test
+    public void selectStudentByCourseId(){
+        System.out.println(selectedcourseService.selectStudentByCourseId(1));
+    }
+
+    @Test
+    public void updateSelective(){
+        Selectedcourse selectedcourse = new Selectedcourse();
+        selectedcourse.setCourseid(1);
+        selectedcourse.setStudentid(10002);
+        selectedcourse.setMark(100);
+        System.out.println(selectedcourseService.updateSelective(selectedcourse));
+    }
 
 }

@@ -1,5 +1,9 @@
 package com.system.entity;
 
+import com.github.pagehelper.PageInfo;
+
+import java.util.List;
+
 public class Page {
     private Integer pageNow;
 
@@ -33,6 +37,13 @@ public class Page {
         if(page> pageTotal)
             page = pageTotal;
         Page topage = new Page(page, pageTotal,pageSize);
+        topage.setJumpLink(jumpLink);
+        return topage;
+    }
+
+    public static Page pageElementByHelper(List<Object> list,String jumpLink){
+        PageInfo<Object> pageInfo = new PageInfo<>(list);
+        Page topage = new Page(pageInfo.getPageNum(), pageInfo.getPages(),pageInfo.getPageSize());
         topage.setJumpLink(jumpLink);
         return topage;
     }

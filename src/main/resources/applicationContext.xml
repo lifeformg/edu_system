@@ -31,6 +31,8 @@
         <property name="dataSource" ref="dbcp"/>
         <!--配置实体类别名-->
         <property name="typeAliasesPackage" value="com.system.entity"/>
+
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <!--4、配置mapper扫描器-->

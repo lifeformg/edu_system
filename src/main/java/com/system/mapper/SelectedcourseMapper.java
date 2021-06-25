@@ -10,5 +10,7 @@ public interface SelectedcourseMapper {
 
     int insertSelective(Selectedcourse record);
 
-    List<Student> selectStudentByCourseId(Integer courseId);
+    int updateSelective(Selectedcourse record);
+
+    List<Student> selectStudentByCourseId(Integer courseid);
 }

@@ -127,7 +127,6 @@
                       <label for="s1" class="col-sm-2 col-form-label">院系</label>
                       <div class="col-sm-10">
                         <select class="form-control select2" id="s1" name="collegeid">
-<%--                          <option selected="selected">Alabama</option>--%>
                           <c:forEach items="${colleges}" var="college">
                             <option value="${college.collegeid}">${college.collegename}</option>
                           </c:forEach>

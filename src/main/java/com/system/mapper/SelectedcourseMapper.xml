@@ -7,8 +7,22 @@
     <result column="mark" property="mark" jdbcType="INTEGER" />
   </resultMap>
 
-  <select id="selectStudentByCourseId" parameterType="java.lang.Integer">
-    select
+  <resultMap id="selectStudentByCourseIdResultMap" type="com.system.entity.Selectedcourse" >
+    <result column="userID" property="studentid" jdbcType="INTEGER" />
+    <result column="userName" property="studentname" jdbcType="INTEGER" />
+    <result column="mark" property="mark" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectStudentByCourseId" parameterType="java.lang.Integer" resultMap="selectStudentByCourseIdResultMap">
+    SELECT
+    student.userID,
+    student.userName,
+    selectedcourse.mark
+    FROM
+    student
+    INNER JOIN selectedcourse ON selectedcourse.studentID = student.userID
+    WHERE
+    selectedcourse.courseID = #{courseid}
   </select>
 
   <insert id="insert" parameterType="com.system.entity.Selectedcourse" >
@@ -42,4 +56,14 @@
       </if>
     </trim>
   </insert>
+
+  <update id="updateSelective" parameterType="com.system.entity.Selectedcourse">
+    update selectedcourse
+    <set>
+      <if test="mark != null">
+        mark = #{mark}
+      </if>
+    </set>
+    where courseID = #{courseid} and studentID = #{studentid}
+  </update>
 </mapper>

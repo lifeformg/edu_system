@@ -7,6 +7,8 @@ public class Selectedcourse {
 
     private Integer mark;
 
+    private String studentname;
+
     public Integer getCourseid() {
         return courseid;
     }
@@ -29,5 +31,23 @@ public class Selectedcourse {
 
     public void setMark(Integer mark) {
         this.mark = mark;
+    }
+
+    public String getStudentname() {
+        return studentname;
+    }
+
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
+    }
+
+    @Override
+    public String toString() {
+        return "Selectedcourse{" +
+                "courseid=" + courseid +
+                ", studentid=" + studentid +
+                ", mark=" + mark +
+                ", studentname='" + studentname + '\'' +
+                '}';
     }
 }
