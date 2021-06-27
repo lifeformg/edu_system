@@ -79,4 +79,9 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> selectAllTeacher() {
         return teacherMapper.selectAllTeacher();
     }
+
+    @Override
+    public Teacher selectByLoginId(Integer loginid) {
+        return teacherMapper.selectByLoginId(loginid);
+    }
 }

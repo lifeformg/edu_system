@@ -2,6 +2,7 @@ package com.system.service;
 
 import com.system.entity.Page;
 import com.system.entity.Student;
+import com.system.entity.Teacher;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import sun.text.normalizer.IntTrie;
 
@@ -23,4 +24,6 @@ public interface StudentService {
     Integer getSearchPageTotal(String word,Integer pageSize);
 
     List<Student> searchByPage(String word,Page topage);
+
+    Student selectByLoginId(Integer loginid);
 }

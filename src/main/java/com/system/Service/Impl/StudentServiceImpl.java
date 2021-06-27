@@ -73,4 +73,9 @@ public class StudentServiceImpl implements StudentService {
     public boolean update(Student student) {
         return 1==studentMapper.updateByPrimaryKeySelective(student);
     }
+
+    @Override
+    public Student selectByLoginId(Integer loginid) {
+        return studentMapper.selectByLoginId(loginid);
+    }
 }

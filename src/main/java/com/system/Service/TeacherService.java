@@ -23,4 +23,6 @@ public interface TeacherService {
     List<Teacher> searchByPage(String word, Page topage);
 
     List<Teacher> selectAllTeacher();
+
+    Teacher selectByLoginId(Integer loginid);
 }
