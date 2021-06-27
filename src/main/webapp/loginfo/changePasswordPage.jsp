@@ -44,7 +44,8 @@
 
 
   <!-- Main Sidebar Container -->
-  <jsp:include page="adminSidebar.jsp" flush="true">
+
+  <jsp:include page="../sidebar/adminSidebar.jsp" flush="true">
     <jsp:param name="activate" value="changePassword"/>
   </jsp:include>
 
@@ -67,11 +68,11 @@
                 <!-- form start -->
                 <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/changePassword">
 
-                  <div class="card-body">
-                    <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">用户ID</label>
+                  <div class="card-body" >
+                    <div class="form-group row" hidden>
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">登录ID</label>
                       <div class="col-sm-10">
-                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="用户ID" name="userid">
+                        <input type="number" min="0" class="form-control" id="inputEmail3" placeholder="登录ID" name="userid" value="${sessionScope.userlogin.userid}">
                       </div>
                     </div>
 

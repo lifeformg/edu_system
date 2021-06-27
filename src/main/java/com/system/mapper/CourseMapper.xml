@@ -17,6 +17,67 @@
     score
   </sql>
 
+  <select id="selectByStudentIdSelected" resultType="com.system.entity.Course">
+        SELECT
+        course.courseName,
+        course.courseID,
+        course.teacherID,
+        course.courseTime,
+        course.classRoom,
+        course.courseWeek,
+        course.courseType,
+        course.collegeID,
+        course.score
+    FROM
+        course
+        INNER JOIN selectedcourse ON selectedcourse.courseID = course.courseID AND selectedcourse.studentID = #{studentid}
+    WHERE
+    selectedcourse.mark IS NULL
+
+
+  </select>
+
+  <select id="selectByStudentIdDone" resultType="com.system.entity.Course">
+    SELECT
+        course.courseName,
+        course.courseID,
+        course.teacherID,
+        course.courseTime,
+        course.classRoom,
+        course.courseWeek,
+        course.courseType,
+        course.collegeID,
+        course.score,
+        selectedcourse.mark
+    FROM
+        course
+        INNER JOIN selectedcourse ON selectedcourse.courseID = course.courseID AND selectedcourse.studentID = #{studentid}
+    WHERE
+    selectedcourse.mark IS NOT NULL
+  </select>
+
+  <select id="selectByStudentIdAll" resultType="com.system.entity.Course">
+    SELECT
+    course.courseID,
+    course.courseName,
+    course.teacherID,
+    course.courseTime,
+    course.classRoom,
+    course.courseWeek,
+    course.courseType,
+    course.collegeID,
+    course.score
+    FROM
+    course
+    WHERE
+    course.courseID NOT IN (SELECT
+        course.courseID
+        FROM
+        course
+        INNER JOIN selectedcourse ON selectedcourse.courseID = course.courseID AND selectedcourse.studentID = #{studentid})
+
+  </select>
+
   <select id="getTotal" resultType="java.lang.Integer">
     SELECT COUNT(courseID) FROM course
   </select>
@@ -46,6 +107,13 @@
     <include refid="Base_Column_List" />
     from course
     where teacherID = #{teacherid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByTeacherIdSearch" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where teacherID = #{teacherid,jdbcType=INTEGER} and course.courseName LIKE '%' #{word,} '%'
   </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

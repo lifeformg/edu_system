@@ -16,12 +16,25 @@ public class SelectedcourseServiceImpl implements SelectedcourseService {
     private SelectedcourseMapper selectedcourseMapper;
 
     @Override
-    public List<Student> selectStudentByCourseId(Integer courseId) {
+    public List<Selectedcourse> selectStudentByCourseId(Integer courseId) {
         return selectedcourseMapper.selectStudentByCourseId(courseId);
     }
 
     @Override
     public boolean updateSelective(Selectedcourse selectedcourse) {
         return 1==selectedcourseMapper.updateSelective(selectedcourse);
+    }
+
+    @Override
+    public boolean select(Integer studentid,Integer courseid) {
+        Selectedcourse selectedcourse = new Selectedcourse();
+        selectedcourse.setStudentid(studentid);
+        selectedcourse.setCourseid(courseid);
+        return 1==selectedcourseMapper.insert(selectedcourse);
+    }
+
+    @Override
+    public boolean unselect( Integer studentid,Integer courseid) {
+        return 1==selectedcourseMapper.delete(courseid,studentid);
     }
 }

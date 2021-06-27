@@ -29,4 +29,12 @@ public interface CourseMapper {
     List<Course> searchByPage(@Param("word")String word, @Param("page")Page page);
 
     List<Course> selectByTeacherId(Integer teacherid);
+
+    List<Course> selectByTeacherIdSearch(@Param("teacherid") Integer teacherid,@Param("word") String word);
+
+    List<Course> selectByStudentIdAll(Integer studentid);
+
+    List<Course> selectByStudentIdSelected(Integer studentid);
+
+    List<Course> selectByStudentIdDone(Integer studentid);
 }

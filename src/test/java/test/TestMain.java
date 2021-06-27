@@ -111,4 +111,15 @@ public class TestMain {
         System.out.println(selectedcourseService.updateSelective(selectedcourse));
     }
 
+    @Test
+    public void selectall(){
+        System.out.println(courseService.selectByStudentIdAll(10003));
+        System.out.println(courseService.selectByStudentIdSelected(10003));
+        System.out.println(courseService.selectByStudentIdDone(10003));
+    }
+
+    @Test
+    public void select(){
+        System.out.println(selectedcourseService.unselect(10006,7));
+    }
 }

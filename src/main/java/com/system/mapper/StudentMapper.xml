@@ -13,6 +13,13 @@
     userID, userName, sex, birthYear, grade, collegeID
   </sql>
 
+  <select id="selectByLoginId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM student
+    WHERE loginID = #{loginid}
+  </select>
+
   <select id="getTotal" resultType="java.lang.Integer">
     SELECT COUNT(userID) FROM student
   </select>

@@ -4,7 +4,7 @@
 
   <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
-    <welcome-file>loginPage.jsp</welcome-file>
+    <welcome-file>/loginfo/loginPage.jsp</welcome-file>
   </welcome-file-list>
   <!--配置前端控制器-->
   <servlet>

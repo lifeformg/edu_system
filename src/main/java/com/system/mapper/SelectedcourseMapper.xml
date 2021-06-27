@@ -11,12 +11,14 @@
     <result column="userID" property="studentid" jdbcType="INTEGER" />
     <result column="userName" property="studentname" jdbcType="INTEGER" />
     <result column="mark" property="mark" jdbcType="INTEGER" />
+    <result column="courseID" property="courseid" jdbcType="INTEGER" />
   </resultMap>
 
   <select id="selectStudentByCourseId" parameterType="java.lang.Integer" resultMap="selectStudentByCourseIdResultMap">
     SELECT
     student.userID,
     student.userName,
+    selectedcourse.courseid,
     selectedcourse.mark
     FROM
     student
@@ -26,9 +28,9 @@
   </select>
 
   <insert id="insert" parameterType="com.system.entity.Selectedcourse" >
-    insert into selectedcourse (courseID, studentID, mark
+    insert into selectedcourse (courseID, studentID
       )
-    values (#{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+    values (#{courseid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.system.entity.Selectedcourse" >
@@ -66,4 +68,9 @@
     </set>
     where courseID = #{courseid} and studentID = #{studentid}
   </update>
+
+  <delete id="delete">
+    delete from selectedcourse
+    where studentID = #{studentid} and courseID = #{courseid}
+  </delete>
 </mapper>

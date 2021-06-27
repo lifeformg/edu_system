@@ -29,7 +29,7 @@
 
 
     <!-- Main Sidebar Container -->
-    <jsp:include page="adminSidebar.jsp" flush="true">
+    <jsp:include page="../sidebar/adminSidebar.jsp" flush="true">
         <jsp:param name="activate" value="userlogin"/>
     </jsp:include>
 

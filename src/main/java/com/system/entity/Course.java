@@ -19,6 +19,8 @@ public class Course {
 
     private Integer score;
 
+    private Integer mark;
+
     public Integer getCourseid() {
         return courseid;
     }
@@ -91,6 +93,14 @@ public class Course {
         this.score = score;
     }
 
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -103,6 +113,7 @@ public class Course {
                 ", coursetype='" + coursetype + '\'' +
                 ", collegeid=" + collegeid +
                 ", score=" + score +
+                ", mark=" + mark +
                 '}';
     }
 }

@@ -29,4 +29,6 @@ public interface TeacherMapper {
     Integer getSearchTotal(String word);
 
     List<Teacher> searchByPage(@Param("word")String word, @Param("page")Page page);
+
+    Teacher selectByLoginId(Integer loginid);
 }

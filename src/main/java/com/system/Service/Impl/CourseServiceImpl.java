@@ -71,4 +71,24 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> selectByTeacherId(Integer teacherid) {
         return courseMapper.selectByTeacherId(teacherid);
     }
+
+    @Override
+    public List<Course> selectByTeacherIdSearch(Integer teacherid, String word) {
+        return courseMapper.selectByTeacherIdSearch(teacherid,word);
+    }
+
+    @Override
+    public List<Course> selectByStudentIdAll(Integer studentid) {
+        return courseMapper.selectByStudentIdAll(studentid);
+    }
+
+    @Override
+    public List<Course> selectByStudentIdSelected(Integer studentid) {
+        return courseMapper.selectByStudentIdSelected(studentid);
+    }
+
+    @Override
+    public List<Course> selectByStudentIdDone(Integer studentid) {
+        return courseMapper.selectByStudentIdDone(studentid);
+    }
 }

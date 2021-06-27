@@ -31,7 +31,7 @@ public class AdminUserloginController {
         Page topage = Page.pageElement(page,userloginService.getPageTotal(Page.defaultPageSize),prefix+"/userlogins?");
         List<Userlogin> userlogins = userloginService.selectByPage(topage);
         setModel(model, topage, userlogins);
-        return "/userlogins.jsp";
+        return "/admin/userlogins.jsp";
     }
 
     //重置非管理用户密码
@@ -49,24 +49,10 @@ public class AdminUserloginController {
 
         List<Userlogin> userlogins = userloginService.searchByPage(word,topage);
         setModel(model, topage, userlogins);
-        return "/userlogins.jsp";
+        return "/admin/userlogins.jsp";
     }
 
-    //修改密码页面
-    //未完成，需要从session取登录用户id传入model
-    @RequestMapping(value = "/changePasswordPage")
-    public String changePasswordPage(Model model){
-        model.addAttribute("prefix",prefix);
 
-        return "/changePasswordPage.jsp";
-    }
-
-    //修改密码
-    @RequestMapping(value = "/changePassword")
-    public String changePassword(Integer userid ,String password,String newPassword){
-        userloginService.changePassword(userid,password,newPassword);
-        return "redirect:changePasswordPage";
-    }
 
     private void setModel(Model model, Page topage, List<Userlogin> userlogins) {
         model.addAttribute("userlogins",userlogins);

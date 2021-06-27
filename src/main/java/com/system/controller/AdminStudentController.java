@@ -39,7 +39,7 @@ public class AdminStudentController {
         List<Student> students = studentService.selectByPage(topage);
         setModel(model, topage, students);
 
-        return "/students.jsp";
+        return "/admin/students.jsp";
     }
 
     //删除学生
@@ -54,7 +54,7 @@ public class AdminStudentController {
     public String addPage(Model model){
         model.addAttribute("colleges",collegeService.selectAllCollege());
         model.addAttribute("prefix",prefix);
-        return "/studentAddPage.jsp";
+        return "/admin/studentAddPage.jsp";
     }
 
     //添加学生
@@ -73,7 +73,7 @@ public class AdminStudentController {
         student.setBirthyearFormed(DateFormer.getDateFormed(student.getBirthyear()));
         student.setGradeFormed(DateFormer.getDateFormed(student.getGrade()));
         model.addAttribute("prefix",prefix);
-        return "/studentUpdatePage.jsp";
+        return "/admin/studentUpdatePage.jsp";
     }
 
     //修改学生
@@ -91,7 +91,7 @@ public class AdminStudentController {
 
         List<Student> students = studentService.searchByPage(word,topage);
         setModel(model, topage, students);
-        return "/students.jsp";
+        return "/admin/students.jsp";
     }
 
     private void setModel(Model model, Page topage, List<Student> students) {

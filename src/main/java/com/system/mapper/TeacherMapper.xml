@@ -19,6 +19,13 @@
     SELECT COUNT(userID) FROM teacher
   </select>
 
+  <select id="selectByLoginId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM teacher
+    WHERE loginID = #{loginid}
+  </select>
+
   <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.system.entity.Page" >
     select
     <include refid="Base_Column_List" />

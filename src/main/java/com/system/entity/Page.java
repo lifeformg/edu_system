@@ -41,8 +41,8 @@ public class Page {
         return topage;
     }
 
-    public static Page pageElementByHelper(List<Object> list,String jumpLink){
-        PageInfo<Object> pageInfo = new PageInfo<>(list);
+    public static <E> Page pageElementByHelper(List<E> list,String jumpLink){
+        PageInfo<E> pageInfo = new PageInfo<>(list);
         Page topage = new Page(pageInfo.getPageNum(), pageInfo.getPages(),pageInfo.getPageSize());
         topage.setJumpLink(jumpLink);
         return topage;

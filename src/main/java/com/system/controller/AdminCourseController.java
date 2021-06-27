@@ -39,7 +39,7 @@ public class AdminCourseController {
         Page topage = Page.pageElement(page,courseService.getPageTotal(Page.defaultPageSize),prefix+"/courses?");
         List<Course> courses = courseService.selectByPage(topage);
         setModel(model, topage, courses);
-        return "/courses.jsp";
+        return "/admin/courses.jsp";
     }
 
     //删除学生
@@ -55,7 +55,7 @@ public class AdminCourseController {
         model.addAttribute("colleges",collegeService.selectAllCollege());
         model.addAttribute("prefix",prefix);
         model.addAttribute("teachers",teacherService.selectAllTeacher());
-        return "/courseAddPage.jsp";
+        return "/admin/courseAddPage.jsp";
     }
 
     //添加学生
@@ -73,7 +73,7 @@ public class AdminCourseController {
         model.addAttribute("course", course);
         model.addAttribute("prefix",prefix);
         model.addAttribute("teachers",teacherService.selectAllTeacher());
-        return "/courseUpdatePage.jsp";
+        return "/admin/courseUpdatePage.jsp";
     }
 
     //修改学生
@@ -89,7 +89,7 @@ public class AdminCourseController {
         Page topage = Page.pageElement(page,courseService.getSearchPageTotal(word,Page.defaultPageSize),prefix+"/search?word="+word);
         List<Course> courses = courseService.searchByPage(word,topage);
         setModel(model, topage, courses);
-        return "/courses.jsp";
+        return "/admin/courses.jsp";
     }
 
     private void setModel(Model model, Page topage, List<Course> courses) {

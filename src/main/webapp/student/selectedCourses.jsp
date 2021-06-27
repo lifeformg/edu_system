@@ -29,8 +29,8 @@
 
 
     <!-- Main Sidebar Container -->
-    <jsp:include page="../sidebar/teacherSidebar.jsp" flush="true">
-        <jsp:param name="activate" value="course"/>
+    <jsp:include page="../sidebar/studentSidebar.jsp" flush="true">
+        <jsp:param name="activate" value="selectedCourses"/>
     </jsp:include>
 
     <!-- Content Wrapper. Contains page content -->
@@ -52,7 +52,7 @@
                                     <div class="input-group input-group-sm" style="width: 150px;">
 
                                         <div class="input-group-prepend">
-                                            <button type="button" class="btn btn-default btn-info"><a href="${pageContext.request.contextPath}${prefix}/studentAddPage">添加</a></button>
+                                            <button type="button" class="btn btn-default btn-info"><a href="${pageContext.request.contextPath}${prefix}/courseAddPage">添加</a></button>
                                         </div>
 
 
@@ -77,29 +77,34 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>学生ID</th>
-                                        <th>姓名</th>
-                                        <th>分数</th>
+                                        <th>课程ID</th>
+                                        <th>课程名</th>
+                                        <th>授课教师编号</th>
+                                        <th>上课时间</th>
+                                        <th>上课教室</th>
+                                        <th>周数</th>
+                                        <th>课程类型</th>
+                                        <th>院系</th>
+                                        <th>学分</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <c:forEach items="${selectedcourses}" var="selectedcourse">
+                                    <c:forEach items="${courses}" var="course">
                                         <tr>
-                                            <td>${selectedcourse.studentid}</td>
-                                            <td>${selectedcourse.studentname}</td>
-                                            <td>${selectedcourse.mark != null ? selectedcourse.mark:"未打分"}</td>
+                                            <td>${course.courseid}</td>
+                                            <td>${course.coursename}</td>
+                                            <td>${course.teacherid}</td>
+                                            <td>${course.coursetime}</td>
+                                            <td>${course.classroom}</td>
+                                            <td>${course.courseweek}</td>
+                                            <td>${course.coursetype}</td>
+                                            <td>${colleges.get(course.collegeid).collegename}</td>
+                                            <td>${course.score}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group btn-group-sm">
-                                                    <c:if test="${selectedcourse.mark == null}">
-                                                        <a href="${pageContext.request.contextPath}${prefix}/markPage?courseid=${selectedcourse.courseid}&userid=${selectedcourse.studentid}"
-                                                           class="btn btn-info"><i class="fas">打分</i></a>
-                                                    </c:if>
-                                                    <c:if test="${selectedcourse.mark != null}">
-                                                        已打分
-                                                    </c:if>
-
+                                                    <a href="${pageContext.request.contextPath}${prefix}/unselect?courseid=${course.courseid}" class="btn btn-info"><i class="fas">退选</i></a>
                                                 </div>
                                             </td>
                                         </tr>

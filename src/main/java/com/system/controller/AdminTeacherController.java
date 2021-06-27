@@ -35,7 +35,7 @@ public class AdminTeacherController {
         Page topage = Page.pageElement(page,teacherService.getPageTotal(Page.defaultPageSize),prefix+"/teachers?");
         List<Teacher> teachers = teacherService.selectByPage(topage);
         setModel(model, topage, teachers);
-        return "/teachers.jsp";
+        return "/admin/teachers.jsp";
     }
 
     //删除学生
@@ -50,7 +50,7 @@ public class AdminTeacherController {
     public String addPage(Model model){
         model.addAttribute("colleges",collegeService.selectAllCollege());
         model.addAttribute("prefix",prefix);
-        return "/teacherAddPage.jsp";
+        return "/admin/teacherAddPage.jsp";
     }
 
     //添加学生
@@ -69,7 +69,7 @@ public class AdminTeacherController {
         teacher.setBirthyearFormed(DateFormer.getDateFormed(teacher.getBirthyear()));
         teacher.setGradeFormed(DateFormer.getDateFormed(teacher.getGrade()));
         model.addAttribute("prefix",prefix);
-        return "/teacherUpdatePage.jsp";
+        return "/admin/teacherUpdatePage.jsp";
     }
 
     //修改学生
@@ -85,7 +85,7 @@ public class AdminTeacherController {
         Page topage = Page.pageElement(page,teacherService.getSearchPageTotal(word,Page.defaultPageSize),prefix+"/search?word="+word);
         List<Teacher> teachers = teacherService.searchByPage(word,topage);
         setModel(model, topage, teachers);
-        return "/teachers.jsp";
+        return "/admin/teachers.jsp";
     }
 
     private void setModel(Model model, Page topage, List<Teacher> students) {
